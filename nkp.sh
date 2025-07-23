@@ -1,0 +1,31 @@
+export NUTANIX_USER=admin
+export NUTANIX_PASSWORD='nx2Tech432!'
+export REGISTRY_URL='http://registry.nutanixdemo.com/docker.io'  
+export IMAGE='nkp-rocky-9.5-release-1.31.9-20250702204537.qcow2'
+export SUBNET='primary-PHX-POC238'
+export CLUSTER_NAME=nkp-flux
+export CONTROLPLANE_VIP=10.38.243.17
+export METALLB_IP_RANGE=10.38.243.18-10.38.243.19
+export NUTANIX_ENDPOINT='https://10.38.238.7:9440'
+export CLUSTER=PHX-POC238
+export STORAGE_CONTAINER=default
+export NAMESPACE=waystar-poc-w4xpl-4thwm
+# export SSH_PUBLIC_KEY='/root/.ssh/id_rsa.pub'
+		
+nkp create cluster nutanix \
+    --cluster-name=${CLUSTER_NAME} \
+    --control-plane-prism-element-cluster=${CLUSTER} \
+    --worker-prism-element-cluster=${CLUSTER} \
+    --control-plane-subnets=${SUBNET} \
+    --worker-subnets=${SUBNET} \
+    --control-plane-endpoint-ip=${CONTROLPLANE_VIP} \
+    --csi-storage-container=${STORAGE_CONTAINER} \
+    --endpoint=${NUTANIX_ENDPOINT} \
+    --control-plane-vm-image=${IMAGE} \
+    --worker-vm-image=${IMAGE} \
+    --registry-mirror-url=${REGISTRY_URL} \
+    --kubernetes-service-load-balancer-ip-range=${METALLB_IP_RANGE} \
+    --dry-run=true \
+    --insecure=true \
+    --output=yaml \
+    --namespace=${NAMESPACE} > nkp-flux.yaml
