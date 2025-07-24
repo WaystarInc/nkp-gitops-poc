@@ -70,8 +70,8 @@ spec:
           serviceLoadBalancer:
             configuration:
               addressRanges:
-              - end: 10.38.243.19
-                start: 10.38.243.18
+              - end: 10.38.238.19
+                start: 10.38.238.18
             provider: MetalLB
         controlPlane:
           nutanix:
@@ -99,7 +99,7 @@ spec:
           url: http://registry.nutanixdemo.com/docker.io
         nutanix:
           controlPlaneEndpoint:
-            host: 10.38.243.17
+            host: 10.38.238.17
             port: 6443
             virtualIP:
               provider: KubeVIP
